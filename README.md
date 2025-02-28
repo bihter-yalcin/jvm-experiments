@@ -9,9 +9,9 @@
 
 # 2- Custom Loader Class
 
-First I raad bytecode to load classDate with `defineClass` method I turned them into class object.
+First I read bytecode to load classDate with `defineClass` method I turned them into class object.
 I initiate the `MyClassLoader()` in main and call the custom reader with `"com.playground.jvmexperiments.classloader.TestClass"`
-lastly I created instance of the class and get and called  the method inside.
+lastly I created instance of the class and get and called the method inside.
 
 
 # 3- Memory Stress Test
