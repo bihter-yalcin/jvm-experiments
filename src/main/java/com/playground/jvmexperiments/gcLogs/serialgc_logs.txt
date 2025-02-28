@@ -1,0 +1,60 @@
+[0.005s][info][gc] Using Serial
+Allocated blocks: 10
+Allocated blocks: 20
+Allocated blocks: 30
+Allocated blocks: 40
+Allocated blocks: 50
+Allocated blocks: 60
+Allocated blocks: 70
+[4.007s][info][gc] GC(0) Pause Young (Allocation Failure) 76M->73M(278M) 21.731ms
+Allocated blocks: 80
+Allocated blocks: 90
+Allocated blocks: 100
+Allocated blocks: 110
+Allocated blocks: 120
+Allocated blocks: 130
+Allocated blocks: 140
+Allocated blocks: 150
+[8.142s][info][gc] GC(1) Pause Young (Allocation Failure) 149M->148M(278M) 21.775ms
+Allocated blocks: 160
+Allocated blocks: 170
+Allocated blocks: 180
+Allocated blocks: 190
+Allocated blocks: 200
+Allocated blocks: 210
+Allocated blocks: 220
+[12.301s][info][gc] GC(2) Pause Young (Allocation Failure) 225M->224M(303M) 20.178ms
+[12.305s][info][gc] GC(3) Pause Full (Allocation Failure) 224M->224M(494M) 3.472ms
+Allocated blocks: 230
+Allocated blocks: 240
+Allocated blocks: 250
+Allocated blocks: 260
+Allocated blocks: 270
+Allocated blocks: 280
+Allocated blocks: 290
+Allocated blocks: 300
+Allocated blocks: 310
+Allocated blocks: 320
+Allocated blocks: 330
+Allocated blocks: 340
+Allocated blocks: 350
+[19.307s][info][gc] GC(4) Pause Young (Allocation Failure) 352M->351M(494M) 44.159ms
+Allocated blocks: 360
+Allocated blocks: 370
+Allocated blocks: 380
+Allocated blocks: 390
+Allocated blocks: 400
+Allocated blocks: 410
+Allocated blocks: 420
+Allocated blocks: 430
+Allocated blocks: 440
+Allocated blocks: 450
+Allocated blocks: 460
+Allocated blocks: 470
+Allocated blocks: 480
+Allocated blocks: 490
+[26.768s][info][gc] GC(5) Pause Young (Allocation Failure) 488M->488M(494M) 0.109ms
+[26.792s][info][gc] GC(6) Pause Full (Allocation Failure) 488M->487M(494M) 24.177ms
+Allocated blocks: 500
+[27.127s][info][gc] GC(7) Pause Full (Allocation Failure) 494M->493M(494M) 6.928ms
+[27.196s][info][gc] GC(8) Pause Full (Allocation Failure) 493M->493M(494M) 68.564ms

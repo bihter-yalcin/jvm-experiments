@@ -1,3 +1,19 @@
+
+# 1- Hello JVM
+1) Compile code with `mvn clean package`
+2) Run the compiled class with 
+`mvn exec:java -Dexec.mainClass="com.playground.jvmexperiments.hellojvm.HelloJVM"` command
+3) See the bytecode instructions which JIT interpreted with using 
+`javap -c HelloJVM.class > HelloJVM_bytecode.txt` command 
+4) Lastly I relocate the txt file under the hellojvm to push the repo
+
+# 2- Custom Loader Class
+
+First I raad bytecode to load classDate with `defineClass` method I turned them into class object.
+I initiate the `MyClassLoader()` in main and call the custom reader with `"com.playground.jvmexperiments.classloader.TestClass"`
+lastly I created instance of the class and get and called  the method inside.
+
+
 # 3- Memory Stress Test
 
 A simple Java experiment that continuously allocates large arrays to observe when the JVM runs out of heap space.
@@ -26,4 +42,16 @@ A simple Java experiment that continuously allocates large arrays to observe whe
 | 512 MB        | `java -Xmx512m -cp <br/>target/jvm-experiments-1.0-SNAPSHOT.jar com.playground.jvmexperiments.memorystress.MemoryTest` | ~500                 | `OutOfMemoryError` |
 | 200 MB        | `java -Xmx200m -cp <br/>target/jvm-experiments-1.0-SNAPSHOT.jar com.playground.jvmexperiments.memorystress.MemoryTest` | ~190                 | `OutOfMemoryError` |
 
+# 4- GC Logs
 
+A simple experiment to observe GC logs' frequencies and behaviours. You can see the whole logs under the gcLogs file.
+
+---
+
+## Results
+| **GC Type** | **-Xmx** | **GC Trigger Points (Blocks)** | **Notes**                                                                                       
+|-------------|----------|--------------------------------|------------------------------------------------------------------------------------------------|
+| G1          | 512m     | 120, 500                       | Tends to perform larger collections at fewer intervals. <br/>Manages humongous objects (large arrays) with region-based cleanup. 
+| G1          | 200m     | 80, 90, 190                    | With smaller heap, it triggers GC sooner and more frequently. <br/>Still handles large objects in “big chunks.”                  
+| Parallel    | 512m     | 70                             | Multi-threaded collector, generally “quicker” GC events. <br/>Tends to collect earlier when it detects growing memory usage.      
+| Serial      | 512m     | 70, 150, 220, 350              | Single-threaded, multiple stop-the-world phases. <br/>Performs smaller but more frequent GC cycles to keep up with allocations.  
