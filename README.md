@@ -55,3 +55,15 @@ A simple experiment to observe GC logs' frequencies and behaviours. You can see 
 | G1          | 200m     | 80, 90, 190                    | With smaller heap, it triggers GC sooner and more frequently. <br/>Still handles large objects in “big chunks.”                  
 | Parallel    | 512m     | 70                             | Multi-threaded collector, generally “quicker” GC events. <br/>Tends to collect earlier when it detects growing memory usage.      
 | Serial      | 512m     | 70, 150, 220, 350              | Single-threaded, multiple stop-the-world phases. <br/>Performs smaller but more frequent GC cycles to keep up with allocations.  
+
+# 4- JIT Demo
+
+An experiment to observe JIT's interpretation performance on the code.
+
+---
+## Results
+| **Mode**   | **Sum**               | **Time (ns)**    | **Interpretation**                                                                                      |
+|------------|-----------------------|------------------|---------------------------------------------------------------------------------------------------------|
+| `-Xint`    | 9999999900000000     | 1454390208       | **Fully interpreted.** <br/>Slowest execution due to no JIT optimizations.                              |
+| `-Xmixed`  | 9999999900000000     | 54002291         | **Default (mixed) mode.** <br/>Fastest overall once JIT optimizations kick in.                          |
+| `-Xcomp`   | 9999999900000000     | 108551750        | **Fully compiled mode.** <br/>Slower startup than mixed but still significantly faster than interpreted. |
