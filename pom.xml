@@ -35,4 +35,11 @@
 
         </plugins>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.29.2-GA</version>
+        </dependency>
+    </dependencies>
 </project>

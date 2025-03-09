@@ -32,7 +32,17 @@ public class MyClassLoader extends ClassLoader {
         return Files.readAllBytes(Paths.get(path));
     }
 
-    public static void main(String[] args) throws Exception{
+
+    /**
+     * Provide a public defineClass method to avoid using reflection on 'ClassLoader.defineClass',
+     * which is restricted in Java 9+ without --add-opens.
+     * It is for bytecode manipulation experiment
+     */
+    public Class<?> defineClass(String name, byte[] byteCode) {
+        return super.defineClass(name, byteCode, 0, byteCode.length);
+    }
+
+    public static void main(String[] args) throws Exception {
         MyClassLoader loader = new MyClassLoader();
 
         Class<?> testClass = loader.loadClass("com.playground.jvmexperiments.classloader.TestClass");
