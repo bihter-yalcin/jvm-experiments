@@ -9,9 +9,11 @@
 
 # 2- Custom Loader Class
 
-First I read bytecode to load classDate with `defineClass` method I turned them into class object.
-I initiate the `MyClassLoader()` in main and call the custom reader with `"com.playground.jvmexperiments.classloader.TestClass"`
-lastly I created instance of the class and get and called the method inside.
+1) I wrote a loop that reads the raw bytes from a .class file and uses defineClass(...) to transform those bytes into a Class<?>. 
+2) In the main method, I create an instance of MyClassLoader, then call:
+loader.loadClass("com.playground.jvmexperiments.classloader.TestClass");
+3) Next, I instantiate the newly loaded class and invoke its method via reflection.
+This demonstrates how you can override the JVM’s usual class-loading process to load code from different sources—whether from a local file, remote server, or even an in-memory byte array.
 
 
 # 3- Memory Stress Test
@@ -56,7 +58,7 @@ A simple experiment to observe GC logs' frequencies and behaviours. You can see 
 | Parallel    | 512m     | 70                             | Multi-threaded collector, generally “quicker” GC events. <br/>Tends to collect earlier when it detects growing memory usage.      
 | Serial      | 512m     | 70, 150, 220, 350              | Single-threaded, multiple stop-the-world phases. <br/>Performs smaller but more frequent GC cycles to keep up with allocations.  
 
-# 4- JIT Demo
+# 5- JIT Demo
 
 An experiment to observe JIT's interpretation performance on the code.
 
@@ -67,3 +69,9 @@ An experiment to observe JIT's interpretation performance on the code.
 | `-Xint`    | 9999999900000000     | 1454390208       | **Fully interpreted.** <br/>Slowest execution due to no JIT optimizations.                              |
 | `-Xmixed`  | 9999999900000000     | 54002291         | **Default (mixed) mode.** <br/>Fastest overall once JIT optimizations kick in.                          |
 | `-Xcomp`   | 9999999900000000     | 108551750        | **Fully compiled mode.** <br/>Slower startup than mixed but still significantly faster than interpreted. |
+
+# 6- Bytecode Manipulation
+
+1) I explore how to modify existing classes at the bytecode level—injecting extra logic into methods without editing the original source code. 
+2) Tools like Javassist, ASM, or Byte Buddy let you alter method bodies, add logging, or change return values at runtime. For example, I used Javassist to insert:
+   System.out.println("Injected!");
